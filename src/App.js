@@ -3,6 +3,8 @@ import React from "react";
 import Sidebar from "./components/layout/Sidebar";
 import Content from "./components/layout/Content";
 
+import withAuthentication from "./hoc/withAuthentication";
+
 const App = () => {
   return (
     <div id="wrapper">
@@ -12,4 +14,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default withAuthentication(App);

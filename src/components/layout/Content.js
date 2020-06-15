@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import Topbar from "./Topbar";
 import Dashboard from "../dashboard/Dashboard";
 import Login from "../auth/Login";
+import PublicOnlyRoute from "../auth/PublicOnlyRoute";
 
 const Content = () => {
   return (
@@ -13,7 +14,7 @@ const Content = () => {
         <div className="container-fluid">
           <Switch>
             <Route exact path="/" component={Dashboard} />
-            <Route exact path="/login" component={Login} />
+            <PublicOnlyRoute exact path="/login" component={Login} />
           </Switch>
         </div>
       </div>
