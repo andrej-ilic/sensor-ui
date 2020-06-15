@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import classnames from "classnames";
 
 import SidebarLink from "./SidebarLink";
+import ROUTE from "../../util/routes";
 
 const Sidebar = () => {
+  const path = useLocation().pathname;
+
   const [isToggled, setIsToggled] = useState(false);
 
   return (
@@ -15,17 +18,17 @@ const Sidebar = () => {
       )}
     >
       <Link
-        to="/"
+        to={ROUTE.DASHBOARD}
         className="sidebar-brand d-flex align-items-center justify-content-center"
       >
         Sensor tracker
       </Link>
       <hr className="sidebar-divider mb-0" />
       <SidebarLink
-        to="/"
+        to={ROUTE.DASHBOARD}
         text="Dashboard"
         iconClassName="fas fa-fw fa-tachometer-alt"
-        active={true}
+        active={path === ROUTE.DASHBOARD}
       />
       <hr className="sidebar-divider" />
       <div className="text-center d-none d-md-inline">

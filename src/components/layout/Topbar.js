@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import ROUTE from "../../util/routes";
+
 const Topbar = () => {
   const unauthenticatedLinks = (
     <li className="nav-item mx-1">
-      <Link to="/" className="nav-link">
+      <Link to={ROUTE.LOGIN} className="nav-link">
         <i className="fas fa-fw fa-sign-in-alt" />
         <span className="ml-1 text-gray-500">Login</span>
       </Link>

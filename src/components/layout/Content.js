@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 
 import Topbar from "./Topbar";
 import Dashboard from "../dashboard/Dashboard";
+import Login from "../auth/Login";
 
 const Content = () => {
   return (
@@ -11,7 +12,8 @@ const Content = () => {
         <Topbar />
         <div className="container-fluid">
           <Switch>
-            <Route path="/" component={Dashboard} />
+            <Route exact path="/" component={Dashboard} />
+            <Route exact path="/login" component={Login} />
           </Switch>
         </div>
       </div>
