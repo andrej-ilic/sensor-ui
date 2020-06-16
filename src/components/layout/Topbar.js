@@ -1,6 +1,5 @@
 import React, { Fragment, useContext } from "react";
 import { Link } from "react-router-dom";
-import classnames from "classnames";
 
 import { FirebaseContext } from "../../context/firebase";
 import { LayoutContext } from "../../context/layout";
@@ -8,9 +7,7 @@ import useUser from "../../hooks/useUser";
 import ROUTE from "../../util/routes";
 
 const Topbar = () => {
-  const { isSidebarCollapsed, toggleSidebarCollapsed } = useContext(
-    LayoutContext
-  );
+  const { toggleSidebar } = useContext(LayoutContext);
   const firebase = useContext(FirebaseContext);
   /** @type import('firebase/app').auth.Auth */
   const auth = firebase.auth;
@@ -36,9 +33,9 @@ const Topbar = () => {
     authenticatedContent = (
       <Fragment>
         <li className="nav-item">
-          <Link to="#" className="nav-link">
+          <div className="nav-link">
             <span className="ml-1 text-gray-500">{user.email}</span>
-          </Link>
+          </div>
         </li>
         <li className="nav-item">
           <button className="nav-link btn" onClick={() => signOut()}>
@@ -54,10 +51,8 @@ const Topbar = () => {
     <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
       <button
         id="sidebarToggleTop"
-        className={classnames("btn btn-link rounded-circle mr-3", {
-          "d-md-none": !isSidebarCollapsed,
-        })}
-        onClick={toggleSidebarCollapsed}
+        className="btn btn-link rounded-circle mr-3 d-md-none"
+        onClick={toggleSidebar}
       >
         <i className="fa fa-bars"></i>
       </button>
