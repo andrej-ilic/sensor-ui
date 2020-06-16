@@ -25,7 +25,7 @@ const SensorState = ({
           <div className="col-12 col-md-6 col-xl-3 mt-3 mt-md-0">
             <BorderCard
               title="Humidity"
-              content={`${humidity.toFixed(1)}% `}
+              content={`${humidity.toFixed(1)}%`}
               color="info"
               icon="fas fa-2x fa-tint"
               animation="grow"
@@ -34,7 +34,7 @@ const SensorState = ({
           <div className="col-12 col-md-6 col-xl-3 mt-3 mt-xl-0">
             <BorderCard
               title="Avg. temperature (today)"
-              content={`${averageTemperature.toFixed(1)}% `}
+              content={`${averageTemperature.toFixed(1)} °C`}
               color="warning"
               icon="fas fa-2x fa-thermometer-three-quarters"
               animation="grow"
@@ -43,7 +43,7 @@ const SensorState = ({
           <div className="col-12 col-md-6 col-xl-3 mt-3 mt-xl-0">
             <BorderCard
               title="Avg. humidity (today)"
-              content={`${averageHumidity.toFixed(1)}% `}
+              content={`${averageHumidity.toFixed(1)}%`}
               color="success"
               icon="fas fa-2x fa-tint"
               animation="grow"
