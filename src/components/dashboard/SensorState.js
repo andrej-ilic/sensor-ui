@@ -11,9 +11,9 @@ const SensorState = ({
 }) => {
   return (
     <div className="row">
-      <div className="col-12 col-lg-3">
+      <div className="col-12">
         <div className="row">
-          <div className="col-12">
+          <div className="col-12 col-md-6 col-xl-3">
             <BorderCard
               title="Temperature"
               content={`${temperature.toFixed(1)} °C`}
@@ -22,7 +22,7 @@ const SensorState = ({
               animation="grow"
             />
           </div>
-          <div className="col-12 mt-3">
+          <div className="col-12 col-md-6 col-xl-3 mt-3 mt-md-0">
             <BorderCard
               title="Humidity"
               content={`${humidity.toFixed(1)}% `}
@@ -31,7 +31,7 @@ const SensorState = ({
               animation="grow"
             />
           </div>
-          <div className="col-12 mt-3">
+          <div className="col-12 col-md-6 col-xl-3 mt-3 mt-xl-0">
             <BorderCard
               title="Avg. temperature (today)"
               content={`${averageTemperature.toFixed(1)}% `}
@@ -40,7 +40,7 @@ const SensorState = ({
               animation="grow"
             />
           </div>
-          <div className="col-12 mt-3">
+          <div className="col-12 col-md-6 col-xl-3 mt-3 mt-xl-0">
             <BorderCard
               title="Avg. humidity (today)"
               content={`${averageHumidity.toFixed(1)}% `}
