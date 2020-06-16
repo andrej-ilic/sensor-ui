@@ -2,10 +2,10 @@ import React, { Fragment, useContext } from "react";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
 
-import ROUTE from "../../util/routes";
-import useUser from "../../hooks/useUser";
 import { FirebaseContext } from "../../context/firebase";
 import { LayoutContext } from "../../context/layout";
+import useUser from "../../hooks/useUser";
+import ROUTE from "../../util/routes";
 
 const Topbar = () => {
   const { isSidebarCollapsed, toggleSidebarCollapsed } = useContext(

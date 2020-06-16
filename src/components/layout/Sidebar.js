@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import classnames from "classnames";
 
-import SidebarLink from "./SidebarLink";
+import { LayoutContext } from "../../context/layout";
 import ROUTE from "../../util/routes";
 
-import { LayoutContext } from "../../context/layout";
+import SidebarLink from "./SidebarLink";
 
 const Sidebar = () => {
   const path = useLocation().pathname;
