@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 
 import { FirebaseContext } from "../context/firebase";
-import UserContext from "../context/user";
+import { UserContext } from "../context/user";
 
 const withAuthentication = (Component) => (props) => {
   const [isLoading, setIsLoading] = useState(true);

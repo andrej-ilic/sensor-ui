@@ -1,20 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import classnames from "classnames";
 
 import SidebarLink from "./SidebarLink";
 import ROUTE from "../../util/routes";
 
+import { LayoutContext } from "../../context/layout";
+
 const Sidebar = () => {
   const path = useLocation().pathname;
-
-  const [isToggled, setIsToggled] = useState(false);
+  const { isSidebarToggled, isSidebarCollapsed, toggleSidebar } = useContext(
+    LayoutContext
+  );
 
   return (
     <ul
       className={classnames(
         "navbar-nav bg-gradient-primary sidebar sidebar-dark accordion",
-        { toggled: isToggled }
+        { toggled: isSidebarToggled, collapse: isSidebarCollapsed }
       )}
     >
       <Link
@@ -35,7 +38,7 @@ const Sidebar = () => {
         <button
           id="sidebarToggle"
           className="rounded-circle border-0"
-          onClick={() => setIsToggled((v) => !v)}
+          onClick={toggleSidebar}
         ></button>
       </div>
     </ul>
