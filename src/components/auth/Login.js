@@ -1,12 +1,15 @@
-import React, { Fragment, useState, useContext } from "react";
+import React, { Fragment, useState, useContext, useEffect } from "react";
 
 import { FirebaseContext } from "../../context/firebase";
+
+import LoadingButton from "../common/LoadingButton";
 
 const Login = () => {
   const firebase = useContext(FirebaseContext);
   /** @type import('firebase/app').auth.Auth */
   const auth = firebase.auth;
 
+  const [isLoading, setIsLoading] = useState(false);
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
@@ -23,11 +26,13 @@ const Login = () => {
   const handleSubmit = (e) => {
     e && e.preventDefault();
 
+    setIsLoading(true);
+
     const { email, password } = inputs;
 
     auth
       .signInWithEmailAndPassword(email, password)
-      .then((res) => {})
+      .then(() => setIsLoading(false))
       .catch();
   };
 
@@ -59,9 +64,13 @@ const Login = () => {
                     onChange={handleInputChange}
                   />
                 </div>
-                <button type="submit" className="btn btn-primary btn-block">
+                <LoadingButton
+                  type="submit"
+                  className="btn btn-primary btn-block"
+                  loading={isLoading}
+                >
                   Login
-                </button>
+                </LoadingButton>
               </form>
             </div>
           </div>
