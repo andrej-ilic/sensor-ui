@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useRef } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import { FirebaseContext } from "../context/firebase";
 import { getCurrentDate, getPreviousDate, getNextDate } from "../util";
@@ -7,10 +7,9 @@ const useRecentSensorData = () => {
   const firebase = useContext(FirebaseContext);
   /** @type import('firebase/app').firestore.Firestore */
   const db = firebase.db;
-
-  const todayRef = useRef({});
-  const yesterdayRef = useRef({});
-  const tomorrowRef = useRef({});
+  const [todayData, setTodayData] = useState({});
+  const [yesterdayData, setYesterdayData] = useState({});
+  const [tomorrowData, setTomorrowData] = useState({});
   const [todayLoaded, setTodayLoaded] = useState(false);
   const [yesterdayLoaded, setYesterdayLoaded] = useState(false);
   const [tomorrowLoaded, setTomorrowLoaded] = useState(false);
@@ -21,7 +20,7 @@ const useRecentSensorData = () => {
   useEffect(
     () =>
       db.doc(`sensor/mtiv09e1/data/${currentDate}`).onSnapshot((doc) => {
-        todayRef.current = doc.data();
+        setTodayData(doc.data());
         setTodayLoaded(true);
       }),
     [db, currentDate]
@@ -30,7 +29,7 @@ const useRecentSensorData = () => {
   useEffect(
     () =>
       db.doc(`sensor/mtiv09e1/data/${previousDate}`).onSnapshot((doc) => {
-        yesterdayRef.current = doc.data();
+        setYesterdayData(doc.data());
         setYesterdayLoaded(true);
       }),
     [db, previousDate]
@@ -39,7 +38,7 @@ const useRecentSensorData = () => {
   useEffect(
     () =>
       db.doc(`sensor/mtiv09e1/data/${tomorrowDate}`).onSnapshot((doc) => {
-        tomorrowRef.current = doc.data();
+        setTomorrowData(doc.data());
         setTomorrowLoaded(true);
         setCurrentDate(getCurrentDate());
         setPreviousDate(getPreviousDate());
@@ -50,15 +49,9 @@ const useRecentSensorData = () => {
 
   const getPoints = () =>
     [
-      ...(!!todayRef.current && !!todayRef.current.data
-        ? todayRef.current.data
-        : []),
-      ...(!!yesterdayRef.current && !!yesterdayRef.current.data
-        ? yesterdayRef.current.data
-        : []),
-      ...(!!tomorrowRef.current && !!tomorrowRef.current.data
-        ? tomorrowRef.current.data
-        : []),
+      ...(!!todayData && !!todayData.data ? todayData.data : []),
+      ...(!!yesterdayData && !!yesterdayData.data ? yesterdayData.data : []),
+      ...(!!tomorrowData && !!tomorrowData.data ? tomorrowData.data : []),
     ]
       .filter(
         (x) =>
