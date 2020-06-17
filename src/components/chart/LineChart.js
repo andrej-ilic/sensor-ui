@@ -9,6 +9,7 @@ import {
   Tooltip,
   ResponsiveContainer,
   Legend,
+  ReferenceLine,
 } from "recharts";
 
 const CustomLineChart = ({
@@ -23,7 +24,22 @@ const CustomLineChart = ({
   tickFormatter,
   labelFormatter,
   syncId,
+  average,
+  averageColor,
 }) => {
+  const ticks = [];
+  let hour =
+    Math.floor((Date.now() - 1000 * 60 * 60 * 24) / (1000 * 60 * 60)) *
+    1000 *
+    60 *
+    60;
+  for (let i = 0; i < 24; i++) {
+    if (data[0].time < hour) {
+      ticks.push(hour);
+    }
+    hour += 1000 * 60 * 60;
+  }
+
   return (
     <div style={{ width: "100%", height }}>
       <ResponsiveContainer>
@@ -32,7 +48,9 @@ const CustomLineChart = ({
             dataKey={xKey}
             name={xName}
             tickFormatter={tickFormatter}
-            domain={["auto", "auto"]}
+            domain={["dataMin", "dataMax"]}
+            ticks={ticks}
+            minTickGap={30}
             type="number"
           />
           <YAxis unit={unit} domain={["dataMin - 1", "dataMax + 1"]} />
@@ -42,6 +60,9 @@ const CustomLineChart = ({
             labelFormatter={labelFormatter}
           />
           <Legend />
+          {average !== undefined && (
+            <ReferenceLine y={average} stroke={averageColor} />
+          )}
           <Line
             type="monotone"
             dataKey={yKey}
@@ -73,6 +94,8 @@ CustomLineChart.propTypes = {
   tickFormatter: PropTypes.func,
   labelFormatter: PropTypes.func,
   syncId: PropTypes.string,
+  average: PropTypes.number,
+  averageColor: PropTypes.string,
 };
 
 export default CustomLineChart;
