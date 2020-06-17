@@ -10,14 +10,21 @@ const getNextDate = () => getDateFromUnixTime(Date.now() + 1000 * 60 * 60 * 24);
 const getDateFromUnixTime = (time) => moment(time).format("YYYYMMDD");
 
 const getCurrentDateUnixTime = () =>
-  Math.floor(Date.now() / (1000 * 60 * 60 * 24)) * 24 * 60 * 60 * 1000;
-
-const getDayFromDate = (date) =>
-  Math.floor(moment(date).valueOf() / (1000 * 60 * 60 * 24)) *
+  Math.floor(getUnixTimeInLocalTimezone(new Date()) / (1000 * 60 * 60 * 24)) *
   24 *
   60 *
   60 *
   1000;
+
+const getDateUnixTime = (date) =>
+  Math.floor(getUnixTimeInLocalTimezone(date) / (1000 * 60 * 60 * 24)) *
+  24 *
+  60 *
+  60 *
+  1000;
+
+const getUnixTimeInLocalTimezone = (d) =>
+  d.getTime() + d.getTimezoneOffset() * -60000;
 
 export {
   getCurrentDate,
@@ -25,5 +32,5 @@ export {
   getNextDate,
   getDateFromUnixTime,
   getCurrentDateUnixTime,
-  getDayFromDate,
+  getDateUnixTime,
 };

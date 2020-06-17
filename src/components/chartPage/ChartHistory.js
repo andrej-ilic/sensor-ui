@@ -5,7 +5,7 @@ import useSensorState from "../../hooks/useSensorState";
 import useSensorData from "../../hooks/useSensorData";
 import {
   getCurrentDateUnixTime,
-  getDayFromDate,
+  getDateUnixTime,
   getDateFromUnixTime,
 } from "../../util";
 
@@ -24,8 +24,8 @@ const ChartHistory = () => {
   );
 
   const handleDayChange = (day) => {
-    setSelectedDay(new Date(getDayFromDate(day)));
-    setDay(getDateFromUnixTime(getDayFromDate(day)));
+    setSelectedDay(new Date(getDateUnixTime(day)));
+    setDay(getDateFromUnixTime(getDateUnixTime(day)));
   };
 
   return (
