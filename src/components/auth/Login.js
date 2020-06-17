@@ -40,7 +40,7 @@ const Login = () => {
     <Fragment>
       <div className="row align-items-center justify-content-center">
         <div className="col-sm-12 col-md-10 col-lg-7 col-xl-5">
-          <h3>Login</h3>
+          <h3 className="text-gray-700">Login</h3>
           <div className="card">
             <div className="card-body">
               <form onSubmit={handleSubmit}>

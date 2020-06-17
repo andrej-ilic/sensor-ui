@@ -33,6 +33,12 @@ const Sidebar = () => {
         iconClassName="fas fa-fw fa-tachometer-alt"
         active={path === ROUTE.DASHBOARD}
       />
+      <SidebarLink
+        to={ROUTE.CHART_HISTORY}
+        text="Chart history"
+        iconClassName="fas fa-fw fa-chart-line"
+        active={path === ROUTE.CHART_HISTORY}
+      />
       <hr className="sidebar-divider" />
       <div className="text-center d-none d-md-inline">
         <button
