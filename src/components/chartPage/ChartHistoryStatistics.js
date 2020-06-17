@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 
 import BorderCard from "../common/BorderCard";
-import ChartHistoryCharts from "./ChartHistoryCharts";
 
 const ChartHistoryStatistics = ({ data }) => {
   return (
@@ -29,7 +28,7 @@ const ChartHistoryStatistics = ({ data }) => {
   );
 };
 
-ChartHistoryCharts.propTypes = {
+ChartHistoryStatistics.propTypes = {
   data: PropTypes.object.isRequired,
 };
 
