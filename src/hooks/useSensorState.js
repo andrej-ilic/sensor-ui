@@ -6,19 +6,18 @@ const useSensorState = () => {
   const firebase = useContext(FirebaseContext);
   /** @type import('firebase/app').firestore.Firestore */
   const db = firebase.db;
-  const [loading, setLoading] = useState(true);
-  const [sensor, setSensor] = useState({});
+
+  const [data, setData] = useState({ data: {}, loading: true });
 
   useEffect(
     () =>
       db.doc(`sensor/mtiv09e1`).onSnapshot((doc) => {
-        setSensor(doc.data());
-        setLoading(false);
+        setData({ data: doc.data(), loading: false });
       }),
     [db]
   );
 
-  return [sensor, loading];
+  return [data.data, data.loading];
 };
 
 export default useSensorState;

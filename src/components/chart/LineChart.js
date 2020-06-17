@@ -53,7 +53,7 @@ const CustomLineChart = ({
             minTickGap={30}
             type="number"
           />
-          <YAxis unit={unit} domain={["dataMin - 1", "dataMax + 1"]} />
+          <YAxis unit={unit} domain={["dataMin - 0.5", "dataMax + 0.5"]} />
           <CartesianGrid strokeDasharray="3 3" />
           <Tooltip
             formatter={(x) => x + unit}

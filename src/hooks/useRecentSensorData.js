@@ -7,12 +7,13 @@ const useRecentSensorData = () => {
   const firebase = useContext(FirebaseContext);
   /** @type import('firebase/app').firestore.Firestore */
   const db = firebase.db;
-  const [todayData, setTodayData] = useState({});
-  const [yesterdayData, setYesterdayData] = useState({});
-  const [tomorrowData, setTomorrowData] = useState({});
-  const [todayLoaded, setTodayLoaded] = useState(false);
-  const [yesterdayLoaded, setYesterdayLoaded] = useState(false);
-  const [tomorrowLoaded, setTomorrowLoaded] = useState(false);
+
+  const [todayData, setTodayData] = useState({ data: {}, loading: true });
+  const [yesterdayData, setYesterdayData] = useState({
+    data: {},
+    loading: true,
+  });
+  const [tomorrowData, setTomorrowData] = useState({ data: {}, loading: true });
   const [currentDate, setCurrentDate] = useState(getCurrentDate());
   const [previousDate, setPreviousDate] = useState(getPreviousDate());
   const [tomorrowDate, setTomorrowDate] = useState(getNextDate());
@@ -20,8 +21,7 @@ const useRecentSensorData = () => {
   useEffect(
     () =>
       db.doc(`sensor/mtiv09e1/data/${currentDate}`).onSnapshot((doc) => {
-        setTodayData(doc.data());
-        setTodayLoaded(true);
+        setTodayData({ data: doc.data(), loading: false });
       }),
     [db, currentDate]
   );
@@ -29,8 +29,7 @@ const useRecentSensorData = () => {
   useEffect(
     () =>
       db.doc(`sensor/mtiv09e1/data/${previousDate}`).onSnapshot((doc) => {
-        setYesterdayData(doc.data());
-        setYesterdayLoaded(true);
+        setYesterdayData({ data: doc.data(), loading: false });
       }),
     [db, previousDate]
   );
@@ -38,8 +37,7 @@ const useRecentSensorData = () => {
   useEffect(
     () =>
       db.doc(`sensor/mtiv09e1/data/${tomorrowDate}`).onSnapshot((doc) => {
-        setTomorrowData(doc.data());
-        setTomorrowLoaded(true);
+        setTomorrowData({ data: doc.data(), loading: false });
         setCurrentDate(getCurrentDate());
         setPreviousDate(getPreviousDate());
         setTomorrowDate(getNextDate());
@@ -49,9 +47,15 @@ const useRecentSensorData = () => {
 
   const getPoints = () =>
     [
-      ...(!!todayData && !!todayData.data ? todayData.data : []),
-      ...(!!yesterdayData && !!yesterdayData.data ? yesterdayData.data : []),
-      ...(!!tomorrowData && !!tomorrowData.data ? tomorrowData.data : []),
+      ...(!!todayData && !!todayData.data && !!todayData.data.data
+        ? todayData.data.data
+        : []),
+      ...(!!yesterdayData && !!yesterdayData.data && !!yesterdayData.data.data
+        ? yesterdayData.data.data
+        : []),
+      ...(!!tomorrowData && !!tomorrowData.data && !!tomorrowData.data.data
+        ? tomorrowData.data.data
+        : []),
     ]
       .filter(
         (x) =>
@@ -59,7 +63,10 @@ const useRecentSensorData = () => {
       )
       .sort((a, b) => a.ts - b.ts);
 
-  return [getPoints, todayLoaded && yesterdayLoaded && tomorrowLoaded];
+  return [
+    getPoints,
+    todayData.loading || yesterdayData.loading || tomorrowData.loading,
+  ];
 };
 
 export default useRecentSensorData;

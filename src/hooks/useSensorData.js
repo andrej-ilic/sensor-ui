@@ -6,20 +6,18 @@ const useSensorData = (initialDay) => {
   /** @type import('firebase/app').firestore.Firestore */
   const db = firebase.db;
 
-  const [data, setData] = useState({});
+  const [data, setData] = useState({ data: {}, loading: true });
   const [day, setDay] = useState(initialDay);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     db.doc(`sensor/mtiv09e1/data/${day}`)
       .get()
       .then((doc) => {
-        setData(doc.data());
-        setLoading(false);
+        setData({ data: doc.data(), loading: false });
       });
   }, [db, day]);
 
-  return [data, loading, setDay];
+  return [data.data, data.loading, setDay];
 };
 
 export default useSensorData;

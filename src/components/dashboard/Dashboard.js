@@ -9,12 +9,12 @@ import DashboardCharts from "./DashboardCharts";
 
 const Dashboard = () => {
   const [sensor, loading] = useSensorState();
-  const [getPoints, pointsLoaded] = useRecentSensorData();
+  const [getPoints, pointsLoading] = useRecentSensorData();
 
   return (
     <Fragment>
       <h3 className="text-gray-700">Dashboard</h3>
-      {loading || !pointsLoaded ? (
+      {loading || pointsLoading ? (
         <Spinner />
       ) : (
         <Fragment>
