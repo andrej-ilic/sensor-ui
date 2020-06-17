@@ -1,16 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  Legend,
-} from "recharts";
+
+import LineChart from "./LineChart";
 
 const TemperatureChart = ({ data, height, syncId }) => {
   const temperatureData = data.map((point) => ({
@@ -19,39 +11,24 @@ const TemperatureChart = ({ data, height, syncId }) => {
   }));
 
   return (
-    <div style={{ width: "100%", height }}>
-      <ResponsiveContainer>
-        <LineChart data={temperatureData} syncId={syncId}>
-          <XAxis
-            dataKey="time"
-            name="Time"
-            tickFormatter={(ts) => moment(ts).format("HH:mm")}
-          />
-          <YAxis unit="&deg;C" domain={["dataMin - 1", "dataMax + 1"]} />
-          <CartesianGrid strokeDasharray="3 3" />
-          <Tooltip
-            formatter={(t) => t + "°C"}
-            labelFormatter={(ts) => moment(ts).format("HH:mm Do")}
-          />
-          <Legend />
-          <Line
-            type="monotone"
-            dataKey="temperature"
-            name="Temperature"
-            stroke="#e74a3b"
-            strokeWidth={2}
-          />
-        </LineChart>
-      </ResponsiveContainer>
-    </div>
+    <LineChart
+      data={temperatureData}
+      color="#e74a3b"
+      xName="Time"
+      yName="Temperature"
+      xKey="time"
+      yKey="temperature"
+      height={height}
+      unit="&deg;C"
+      tickFormatter={(ts) => moment(ts).format("HH:mm")}
+      labelFormatter={(ts) => moment(ts).format("HH:mm Do")}
+      syncId={syncId}
+    />
   );
 };
 
-TemperatureChart.defaultProps = {
-  height: "400px",
-};
-
 TemperatureChart.propTypes = {
+  data: PropTypes.array.isRequired,
   height: PropTypes.string,
   syncId: PropTypes.string,
 };
