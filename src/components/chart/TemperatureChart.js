@@ -23,6 +23,7 @@ const TemperatureChart = ({ data, height, syncId }) => {
       tickFormatter={(ts) => moment(ts).format("HH:mm")}
       labelFormatter={(ts) => moment(ts).format("HH:mm Do")}
       syncId={syncId}
+      padding={0.2}
     />
   );
 };

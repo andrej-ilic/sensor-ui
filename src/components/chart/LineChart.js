@@ -26,18 +26,23 @@ const CustomLineChart = ({
   syncId,
   average,
   averageColor,
+  padding,
 }) => {
-  const ticks = [];
-  let hour =
-    Math.floor((Date.now() - 1000 * 60 * 60 * 24) / (1000 * 60 * 60)) *
-    1000 *
-    60 *
-    60;
+  const xTicks = [];
+  let hour = Math.floor(data[0].time / (1000 * 60 * 60)) * 1000 * 60 * 60;
   for (let i = 0; i < 24; i++) {
-    if (data[0].time < hour) {
-      ticks.push(hour);
+    if (data[0].time < hour && data[data.length - 1].time > hour) {
+      xTicks.push(hour);
     }
     hour += 1000 * 60 * 60;
+  }
+
+  const yTicks = [];
+  const values = data.map((x) => x[yKey]);
+  const botValue = parseFloat((Math.min(...values) - padding).toFixed(1));
+  const topValue = parseFloat((Math.max(...values) + padding + 0.1).toFixed(1));
+  for (let i = botValue; i <= topValue; i += 0.1) {
+    yTicks.push(i.toFixed(1));
   }
 
   return (
@@ -49,11 +54,16 @@ const CustomLineChart = ({
             name={xName}
             tickFormatter={tickFormatter}
             domain={["dataMin", "dataMax"]}
-            ticks={ticks}
+            ticks={xTicks}
             minTickGap={30}
             type="number"
           />
-          <YAxis unit={unit} domain={["dataMin - 0.5", "dataMax + 0.5"]} />
+          <YAxis
+            ticks={yTicks}
+            minTickGap={36}
+            unit={unit}
+            domain={[`dataMin - ${padding}`, `dataMax + ${padding}`]}
+          />
           <CartesianGrid strokeDasharray="3 3" />
           <Tooltip
             formatter={(x) => x + unit}
@@ -80,6 +90,7 @@ const CustomLineChart = ({
 CustomLineChart.defaultProps = {
   height: "400px",
   unit: "",
+  padding: 0.1,
 };
 
 CustomLineChart.propTypes = {
@@ -96,6 +107,7 @@ CustomLineChart.propTypes = {
   syncId: PropTypes.string,
   average: PropTypes.number,
   averageColor: PropTypes.string,
+  padding: PropTypes.number,
 };
 
 export default CustomLineChart;
