@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import TemperatureChart from "../chart/TemperatureChart";
@@ -6,7 +6,7 @@ import HumidityChart from "../chart/HumidityChart";
 
 const ChartHistoryCharts = ({ data }) => {
   return (
-    <Fragment>
+    <div className="row mt-3">
       <div className="col-12 col-xl-6">
         <div className="card shadow animated--grow-in">
           <div className="card-body">
@@ -21,7 +21,7 @@ const ChartHistoryCharts = ({ data }) => {
           </div>
         </div>
       </div>
-    </Fragment>
+    </div>
   );
 };
 

@@ -29,7 +29,7 @@ const ChartHistory = () => {
   };
 
   return (
-    <div className="row">
+    <div className="row mb-3">
       <div className="col-12">
         <h3 className="text-gray-700">Chart history</h3>
       </div>
@@ -52,14 +52,12 @@ const ChartHistory = () => {
               }}
             />
           </div>
-          <div className="col-12">
-            {!dataLoading && (
-              <div className="row my-3">
-                <ChartHistoryCharts data={data.data} />
-                <ChartHistoryStatistics data={data} />
-              </div>
-            )}
-          </div>
+          {!dataLoading && (
+            <div className="col-12">
+              <ChartHistoryStatistics {...data} />
+              <ChartHistoryCharts data={data.data} />
+            </div>
+          )}
         </Fragment>
       )}
     </div>
