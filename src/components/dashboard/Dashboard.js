@@ -11,6 +11,8 @@ const Dashboard = () => {
   const [sensor, loading] = useSensorState();
   const [getPoints, pointsLoading] = useRecentSensorData();
 
+  const points = getPoints();
+
   return (
     <Fragment>
       <h3 className="text-gray-700">Dashboard</h3>
@@ -24,7 +26,7 @@ const Dashboard = () => {
             averageTemperature={sensor.averageTemperature}
             averageHumidity={sensor.averageHumidity}
           />
-          <DashboardCharts points={getPoints()} />
+          <DashboardCharts points={points} />
         </Fragment>
       )}
     </Fragment>

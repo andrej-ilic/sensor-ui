@@ -28,6 +28,10 @@ const CustomLineChart = ({
   averageColor,
   padding,
 }) => {
+  if (!data || !data.length) {
+    return <h1 className="my-3 text-center">No data yet</h1>;
+  }
+
   const xTicks = [];
   let hour = Math.floor(data[0].time / (1000 * 60 * 60)) * 1000 * 60 * 60;
   for (let i = 0; i < 24; i++) {

@@ -8,12 +8,18 @@ const useRecentSensorData = () => {
   /** @type import('firebase/app').firestore.Firestore */
   const db = firebase.db;
 
-  const [todayData, setTodayData] = useState({ data: {}, loading: true });
-  const [yesterdayData, setYesterdayData] = useState({
-    data: {},
+  const [todayData, setTodayData] = useState({
+    data: undefined,
     loading: true,
   });
-  const [tomorrowData, setTomorrowData] = useState({ data: {}, loading: true });
+  const [yesterdayData, setYesterdayData] = useState({
+    data: undefined,
+    loading: true,
+  });
+  const [tomorrowData, setTomorrowData] = useState({
+    data: undefined,
+    loading: true,
+  });
   const [currentDate, setCurrentDate] = useState(getCurrentDate());
   const [previousDate, setPreviousDate] = useState(getPreviousDate());
   const [tomorrowDate, setTomorrowDate] = useState(getNextDate());
@@ -29,7 +35,10 @@ const useRecentSensorData = () => {
   useEffect(
     () =>
       db.doc(`sensor/mtiv09e1/data/${previousDate}`).onSnapshot((doc) => {
-        setYesterdayData({ data: doc.data(), loading: false });
+        setYesterdayData({
+          data: doc.data(),
+          loading: false,
+        });
       }),
     [db, previousDate]
   );
