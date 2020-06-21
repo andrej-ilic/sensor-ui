@@ -15,6 +15,7 @@ const ChartHistoryCharts = ({ data }) => {
                 data={data}
                 height="45vh"
                 syncId="chartHistory"
+                zoomable={true}
               />
             ) : (
               <h3 className="my-3 text-center">
@@ -28,7 +29,12 @@ const ChartHistoryCharts = ({ data }) => {
         <div className="card shadow animated--grow-in">
           <div className="card-body">
             {!!data ? (
-              <HumidityChart data={data} height="45vh" syncId="chartHistory" />
+              <HumidityChart
+                data={data}
+                height="45vh"
+                syncId="chartHistory"
+                zoomable={true}
+              />
             ) : (
               <h3 className="my-3 text-center">
                 No temperature data for selected day
@@ -42,7 +48,7 @@ const ChartHistoryCharts = ({ data }) => {
 };
 
 ChartHistoryCharts.propTypes = {
-  data: PropTypes.array.isRequired,
+  data: PropTypes.array,
 };
 
 export default ChartHistoryCharts;
