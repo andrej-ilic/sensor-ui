@@ -40,7 +40,7 @@ const ChartHistoryStatistics = ({
       {averageTemperature !== undefined && (
         <div className="col-12 col-md-6 col-xl-3 mt-3 mt-xl-0">
           <BorderCard
-            title="Avg. temprature"
+            title="Avg. temperature"
             content={`${averageTemperature.toFixed(1)}°C`}
             color="warning"
             icon="fas fa-2x fa-thermometer-three-quarters"

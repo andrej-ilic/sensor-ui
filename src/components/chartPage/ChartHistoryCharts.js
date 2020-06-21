@@ -10,14 +10,30 @@ const ChartHistoryCharts = ({ data }) => {
       <div className="col-12 col-xl-6">
         <div className="card shadow animated--grow-in">
           <div className="card-body">
-            <TemperatureChart data={data} height="45vh" syncId="chartHistory" />
+            {!!data ? (
+              <TemperatureChart
+                data={data}
+                height="45vh"
+                syncId="chartHistory"
+              />
+            ) : (
+              <h3 className="my-3 text-center">
+                No temperature data for selected day
+              </h3>
+            )}
           </div>
         </div>
       </div>
       <div className="col-12 col-xl-6 mt-3 mt-xl-0">
         <div className="card shadow animated--grow-in">
           <div className="card-body">
-            <HumidityChart data={data} height="45vh" syncId="chartHistory" />
+            {!!data ? (
+              <HumidityChart data={data} height="45vh" syncId="chartHistory" />
+            ) : (
+              <h3 className="my-3 text-center">
+                No temperature data for selected day
+              </h3>
+            )}
           </div>
         </div>
       </div>

@@ -55,7 +55,7 @@ const ChartHistory = () => {
           {!dataLoading && (
             <div className="col-12">
               <ChartHistoryStatistics {...data} />
-              <ChartHistoryCharts data={data.data} />
+              <ChartHistoryCharts {...data} />
             </div>
           )}
         </Fragment>
