@@ -15,7 +15,7 @@ const Dashboard = () => {
 
   return (
     <Fragment>
-      <h3 className="text-gray-700">Dashboard</h3>
+      <h3 className="text-gray-700">Status senzora</h3>
       {loading || pointsLoading ? (
         <Spinner />
       ) : (

@@ -14,7 +14,7 @@ const SensorState = ({
       <div className="col-12 col-md-6 col-xl-3">
         {temperature !== undefined && (
           <BorderCard
-            title="Temperature"
+            title="Temperatura"
             content={`${temperature.toFixed(1)}°C`}
             color="danger"
             icon="fas fa-2x fa-thermometer-three-quarters"
@@ -25,7 +25,7 @@ const SensorState = ({
       <div className="col-12 col-md-6 col-xl-3 mt-3 mt-md-0">
         {humidity !== undefined && (
           <BorderCard
-            title="Humidity"
+            title="Vlažnost"
             content={`${humidity.toFixed(1)}%`}
             color="info"
             icon="fas fa-2x fa-tint"
@@ -36,7 +36,7 @@ const SensorState = ({
       <div className="col-12 col-md-6 col-xl-3 mt-3 mt-xl-0">
         {averageTemperature !== undefined && (
           <BorderCard
-            title="Avg. temperature (today)"
+            title="Prosečna temperatura (danas)"
             content={`${averageTemperature.toFixed(1)}°C`}
             color="warning"
             icon="fas fa-2x fa-thermometer-three-quarters"
@@ -47,7 +47,7 @@ const SensorState = ({
       <div className="col-12 col-md-6 col-xl-3 mt-3 mt-xl-0">
         {averageHumidity !== undefined && (
           <BorderCard
-            title="Avg. humidity (today)"
+            title="Prosečna vlažnost (danas)"
             content={`${averageHumidity.toFixed(1)}%`}
             color="success"
             icon="fas fa-2x fa-tint"

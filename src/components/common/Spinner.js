@@ -15,7 +15,7 @@ const Spinner = ({ size, color }) => {
       }}
       role="status"
     >
-      <span className="sr-only">Loading...</span>
+      <span className="sr-only">Učitava se...</span>
     </div>
   );
 };

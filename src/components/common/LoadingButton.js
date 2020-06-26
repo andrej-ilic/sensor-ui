@@ -6,7 +6,7 @@ const LoadingButton = ({ loading, children, ...rest }) => {
     <button {...rest}>
       {loading ? (
         <div className="spinner-border spinner-border-sm" role="status">
-          <span className="sr-only">Loading...</span>
+          <span className="sr-only">Učitava se...</span>
         </div>
       ) : (
         children

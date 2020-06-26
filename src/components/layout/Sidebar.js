@@ -24,18 +24,18 @@ const Sidebar = () => {
         to={ROUTE.DASHBOARD}
         className="sidebar-brand d-flex align-items-center justify-content-center"
       >
-        Sensor tracker
+        Praćenje senzora
       </Link>
       <hr className="sidebar-divider mb-0" />
       <SidebarLink
         to={ROUTE.DASHBOARD}
-        text="Dashboard"
+        text="Status senzora"
         iconClassName="fas fa-fw fa-tachometer-alt"
         active={path === ROUTE.DASHBOARD}
       />
       <SidebarLink
         to={ROUTE.CHART_HISTORY}
-        text="Chart history"
+        text="Istorija grafova"
         iconClassName="fas fa-fw fa-chart-line"
         active={path === ROUTE.CHART_HISTORY}
       />

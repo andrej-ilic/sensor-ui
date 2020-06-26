@@ -24,7 +24,7 @@ const ChartHistoryStatistics = ({
           {maxTemperature !== undefined && minTemperature !== undefined && (
             <div className="col-12 col-md-6 col-xl-3">
               <BorderCard
-                title="Min/Max temperature"
+                title="Min/Maks temperatura"
                 content={`${minTemperature.toFixed(
                   1
                 )} / ${maxTemperature.toFixed(1)}°C`}
@@ -37,7 +37,7 @@ const ChartHistoryStatistics = ({
           {maxHumidity !== undefined && minHumidity !== undefined && (
             <div className="col-12 col-md-6 col-xl-3 mt-3 mt-md-0">
               <BorderCard
-                title="Min/Max humidity"
+                title="Min/Maks vlažnost"
                 content={`${minHumidity.toFixed(1)} / ${maxHumidity.toFixed(
                   1
                 )}%`}
@@ -50,7 +50,7 @@ const ChartHistoryStatistics = ({
           {averageTemperature !== undefined && (
             <div className="col-12 col-md-6 col-xl-3 mt-3 mt-xl-0">
               <BorderCard
-                title="Avg. temperature"
+                title="Prosečna temperatura"
                 content={`${averageTemperature.toFixed(1)}°C`}
                 color="warning"
                 icon="fas fa-2x fa-thermometer-three-quarters"
@@ -61,7 +61,7 @@ const ChartHistoryStatistics = ({
           {averageHumidity !== undefined && (
             <div className="col-12 col-md-6 col-xl-3 mt-3 mt-xl-0">
               <BorderCard
-                title="Avg. humidity"
+                title="Prosečna vlažnost"
                 content={`${averageHumidity.toFixed(1)}%`}
                 color="success"
                 icon="fas fa-2x fa-tint"

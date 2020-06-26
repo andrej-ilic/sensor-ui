@@ -16,8 +16,8 @@ const HumidityChart = ({ data, height, syncId, zoomable }) => {
       <ZoomableLineChart
         data={humidityData}
         color="#36b9cc"
-        xName="Time"
-        yName="Humidity"
+        xName="Vreme"
+        yName="Vlažnost"
         xKey="time"
         yKey="humidity"
         height={height}
@@ -34,8 +34,8 @@ const HumidityChart = ({ data, height, syncId, zoomable }) => {
     <LineChart
       data={humidityData}
       color="#36b9cc"
-      xName="Time"
-      yName="Humidity"
+      xName="Vreme"
+      yName="Vlažnost"
       xKey="time"
       yKey="humidity"
       height={height}

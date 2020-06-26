@@ -1,5 +1,7 @@
 import React, { Fragment, useState } from "react";
 import "react-day-picker/lib/style.css";
+import MomentLocateUtils from "react-day-picker/moment";
+import "moment/locale/sr";
 
 import useSensorState from "../../hooks/useSensorState";
 import useSensorData from "../../hooks/useSensorData";
@@ -31,7 +33,7 @@ const ChartHistory = () => {
   return (
     <div className="row mb-3">
       <div className="col-12">
-        <h3 className="text-gray-700">Chart history</h3>
+        <h3 className="text-gray-700">Istorija grafova</h3>
       </div>
       {sensorLoading ? (
         <Spinner />
@@ -42,6 +44,8 @@ const ChartHistory = () => {
               value={selectedDay}
               onChange={handleDayChange}
               dayPickerProps={{
+                localeUtils: MomentLocateUtils,
+                locale: "sr",
                 selectedDays: selectedDay,
                 disabledDays: [
                   {

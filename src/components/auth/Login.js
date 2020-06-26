@@ -40,7 +40,7 @@ const Login = () => {
     <Fragment>
       <div className="row align-items-center justify-content-center">
         <div className="col-sm-12 col-md-10 col-lg-7 col-xl-5">
-          <h3 className="text-gray-700">Login</h3>
+          <h3 className="text-gray-700">Prijavi se</h3>
           <div className="card">
             <div className="card-body">
               <form onSubmit={handleSubmit}>
@@ -48,7 +48,7 @@ const Login = () => {
                   <input
                     type="email"
                     name="email"
-                    placeholder="Email address"
+                    placeholder="Email adresa"
                     className="form-control"
                     value={inputs.email}
                     onChange={handleInputChange}
@@ -58,7 +58,7 @@ const Login = () => {
                   <input
                     type="password"
                     name="password"
-                    placeholder="Password"
+                    placeholder="Šifra"
                     className="form-control"
                     value={inputs.password}
                     onChange={handleInputChange}
@@ -69,7 +69,7 @@ const Login = () => {
                   className="btn btn-primary btn-block"
                   loading={isLoading}
                 >
-                  Login
+                  Prijavi se
                 </LoadingButton>
               </form>
             </div>

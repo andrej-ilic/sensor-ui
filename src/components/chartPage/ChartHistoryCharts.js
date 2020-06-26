@@ -19,7 +19,7 @@ const ChartHistoryCharts = ({ data }) => {
               />
             ) : (
               <h3 className="my-3 text-center">
-                No temperature data for selected day
+                Nema podataka o temperaturi za izabran dan
               </h3>
             )}
           </div>
@@ -37,7 +37,7 @@ const ChartHistoryCharts = ({ data }) => {
               />
             ) : (
               <h3 className="my-3 text-center">
-                No temperature data for selected day
+                Nema podataka o vlažnosti za izabran dan
               </h3>
             )}
           </div>

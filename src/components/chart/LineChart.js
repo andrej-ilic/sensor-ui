@@ -29,7 +29,7 @@ const CustomLineChart = ({
   padding,
 }) => {
   if (!data || !data.length) {
-    return <h1 className="my-3 text-center">No data yet</h1>;
+    return <h1 className="my-3 text-center">Nema podataka za prikaz</h1>;
   }
 
   const xTicks = [];

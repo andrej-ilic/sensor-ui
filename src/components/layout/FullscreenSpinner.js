@@ -8,7 +8,7 @@ const FullscreenSpinner = () => {
         style={{ width: "5rem", height: "5rem", borderWidth: ".4rem" }}
         role="status"
       >
-        <span className="sr-only">Loading...</span>
+        <span className="sr-only">Učitava se...</span>
       </div>
     </div>
   );

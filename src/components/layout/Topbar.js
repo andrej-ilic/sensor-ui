@@ -22,7 +22,7 @@ const Topbar = () => {
     <li className="nav-item">
       <Link to={ROUTE.LOGIN} className="nav-link">
         <i className="fas fa-fw fa-sign-in-alt" />
-        <span className="ml-1 text-gray-500">Login</span>
+        <span className="ml-1 text-gray-500">Prijavi se</span>
       </Link>
     </li>
   );
@@ -40,7 +40,7 @@ const Topbar = () => {
         <li className="nav-item">
           <button className="nav-link btn" onClick={() => signOut()}>
             <i className="fas fa-fw fa-sign-out-alt" />
-            <span className="ml-1 text-gray-500">Logout</span>
+            <span className="ml-1 text-gray-500">Odjavi se</span>
           </button>
         </li>
       </Fragment>

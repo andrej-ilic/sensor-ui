@@ -16,8 +16,8 @@ const TemperatureChart = ({ data, height, syncId, zoomable }) => {
       <ZoomableLineChart
         data={temperatureData}
         color="#e74a3b"
-        xName="Time"
-        yName="Temperature"
+        xName="Vreme"
+        yName="Temperatura"
         xKey="time"
         yKey="temperature"
         height={height}
@@ -34,8 +34,8 @@ const TemperatureChart = ({ data, height, syncId, zoomable }) => {
     <LineChart
       data={temperatureData}
       color="#e74a3b"
-      xName="Time"
-      yName="Temperature"
+      xName="Vreme"
+      yName="Temperatura"
       xKey="time"
       yKey="temperature"
       height={height}
