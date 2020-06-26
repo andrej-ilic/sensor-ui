@@ -180,10 +180,14 @@ const ZoomableLineChart = ({
       </div>
       {chartState.zoomed && (
         <button
-          className="btn btn-sm btn-primary float-right"
+          className="btn btn-sm btn-primary btn-icon-split position-absolute m-3"
+          style={{ top: 0, right: 0 }}
           onClick={zoomOut}
         >
-          Zoom out
+          <span className="icon text-white-50">
+            <i className="fas fa-search-minus"></i>
+          </span>
+          <span className="text">Zoom out</span>
         </button>
       )}
     </div>
