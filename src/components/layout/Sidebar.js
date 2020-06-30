@@ -32,6 +32,15 @@ const Sidebar = () => {
     </Fragment>
   );
 
+  const authenticatedContent = (
+    <SidebarLink
+      to={ROUTE.WARNINGS}
+      text="Upozoravanje"
+      iconClassName="fas fa-exclamation-triangle"
+      active={path === ROUTE.WARNINGS}
+    />
+  );
+
   return (
     <ul
       className={classnames(
@@ -58,6 +67,7 @@ const Sidebar = () => {
         iconClassName="fas fa-fw fa-chart-line"
         active={path === ROUTE.CHART_HISTORY}
       />
+      {isAuthenticated && authenticatedContent}
       {!isAuthenticated && unauthenticatedContent}
       <hr className="sidebar-divider" />
       <div className="text-center d-none d-md-inline">
