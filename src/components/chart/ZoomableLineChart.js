@@ -54,8 +54,9 @@ const ZoomableLineChart = ({
   }
 
   const xTicks = [];
-  let hour = Math.floor(stateData[0].time / (1000 * 60 * 60)) * 1000 * 60 * 60;
-  const hours = Math.floor(
+  let hour =
+    Math.floor(stateData[0].time / (1000 * 60 * 60) + 1) * 1000 * 60 * 60;
+  const hours = Math.ceil(
     (data[data.length - 1].time - data[0].time) / (1000 * 60 * 60)
   );
   for (let i = 0; i < hours; i++) {
@@ -164,6 +165,7 @@ const ZoomableLineChart = ({
               <ReferenceLine y={average} stroke={averageColor} />
             )}
             <Line
+              type="monotone"
               dataKey={yKey}
               name={yName}
               stroke={color}
