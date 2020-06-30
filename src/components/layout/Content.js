@@ -8,6 +8,7 @@ import Dashboard from "../dashboard/Dashboard";
 import Login from "../auth/Login";
 import PublicOnlyRoute from "../auth/PublicOnlyRoute";
 import ChartHistory from "../chartPage/ChartHistory";
+import Register from "../auth/Register";
 
 const Content = () => {
   return (
@@ -19,6 +20,7 @@ const Content = () => {
             <Route exact path={ROUTE.DASHBOARD} component={Dashboard} />
             <Route exact path={ROUTE.CHART_HISTORY} component={ChartHistory} />
             <PublicOnlyRoute exact path={ROUTE.LOGIN} component={Login} />
+            <PublicOnlyRoute exact path={ROUTE.REGISTER} component={Register} />
           </Switch>
         </div>
       </div>

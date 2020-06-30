@@ -19,12 +19,20 @@ const Topbar = () => {
   const { user, isAuthenticated } = useUser();
 
   const unauthenticatedContent = (
-    <li className="nav-item">
-      <Link to={ROUTE.LOGIN} className="nav-link">
-        <i className="fas fa-fw fa-sign-in-alt" />
-        <span className="ml-1 text-gray-500">Prijavi se</span>
-      </Link>
-    </li>
+    <Fragment>
+      <li className="nav-item">
+        <Link to={ROUTE.LOGIN} className="nav-link">
+          <i className="fas fa-fw fa-sign-in-alt" />
+          <span className="ml-1 text-gray-500">Prijavi se</span>
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link to={ROUTE.REGISTER} className="nav-link">
+          <i className="fas fa-user-plus"></i>
+          <span className="ml-1 text-gray-500">Registruj se</span>
+        </Link>
+      </li>
+    </Fragment>
   );
 
   let authenticatedContent;

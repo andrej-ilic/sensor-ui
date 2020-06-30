@@ -4,7 +4,7 @@ import { FirebaseContext } from "../../context/firebase";
 
 import LoadingButton from "../common/LoadingButton";
 
-const Login = () => {
+const Register = () => {
   const firebase = useContext(FirebaseContext);
   /** @type import('firebase/app').auth.Auth */
   const auth = firebase.auth;
@@ -32,36 +32,35 @@ const Login = () => {
     const { email, password } = inputs;
 
     auth
-      .signInWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => userCredential.user.sendEmailVerification())
       .catch((err) => setError(err.code))
       .finally(() => setIsLoading(false));
   };
 
   let errorMessage = null;
 
-  if (error === "auth/user-not-found") {
+  if (error === "auth/email-already-in-use") {
     errorMessage = (
       <div className="text-danger mb-0 mt-3">
-        Korisnik sa tom email adresom ne postoji
+        Korisnik sa tom email adresom već postoji
       </div>
     );
   } else if (error === "auth/invalid-email") {
     errorMessage = (
       <div className="text-danger mb-0 mt-3">Ne važeća email adresa</div>
     );
-  } else if (error === "auth/wrong-password") {
-    errorMessage = (
-      <div className="text-danger mb-0 mt-3">Pogrešna lozinka</div>
-    );
+  } else if (error === "auth/weak-password") {
+    errorMessage = <div className="text-danger mb-0 mt-3">Slaba lozinka</div>;
   }
 
   return (
     <div className="row align-items-center justify-content-center">
       <div className="col-sm-12 col-md-10 col-lg-7 col-xl-5">
-        <h3 className="text-gray-700">Prijavi se</h3>
+        <h3 className="text-gray-700">Registruj se</h3>
         <div className="card">
           <div className="card-body">
-            <form onSubmit={handleSubmit}>
+            <form className="needs-validation" onSubmit={handleSubmit}>
               <div className="form-group">
                 <input
                   type="email"
@@ -87,7 +86,7 @@ const Login = () => {
                 className="btn btn-primary btn-block"
                 loading={isLoading}
               >
-                Prijavi se
+                Registruj se
               </LoadingButton>
               {errorMessage}
             </form>
@@ -98,4 +97,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, Fragment } from "react";
 import { Link, useLocation } from "react-router-dom";
 import classnames from "classnames";
 
 import { LayoutContext } from "../../context/layout";
 import ROUTE from "../../util/routes";
+import useUser from "../../hooks/useUser";
 
 import SidebarLink from "./SidebarLink";
 
@@ -11,6 +12,24 @@ const Sidebar = () => {
   const path = useLocation().pathname;
   const { isSidebarToggled, isSidebarCollapsed, toggleSidebar } = useContext(
     LayoutContext
+  );
+  const { isAuthenticated } = useUser();
+
+  const unauthenticatedContent = (
+    <Fragment>
+      <SidebarLink
+        to={ROUTE.REGISTER}
+        text="Registruj se"
+        iconClassName="fas fa-fw fa-sign-in-alt"
+        active={path === ROUTE.REGISTER}
+      />
+      <SidebarLink
+        to={ROUTE.LOGIN}
+        text="Prijavi se"
+        iconClassName="fas fa-user-plus"
+        active={path === ROUTE.LOGIN}
+      />
+    </Fragment>
   );
 
   return (
@@ -39,6 +58,7 @@ const Sidebar = () => {
         iconClassName="fas fa-fw fa-chart-line"
         active={path === ROUTE.CHART_HISTORY}
       />
+      {!isAuthenticated && unauthenticatedContent}
       <hr className="sidebar-divider" />
       <div className="text-center d-none d-md-inline">
         <button
