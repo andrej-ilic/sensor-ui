@@ -45,6 +45,7 @@ const Topbar = () => {
             <span className="ml-1 text-gray-500">{user.email}</span>
           </div>
         </li>
+        <div className="topbar-divider"></div>
         <li className="nav-item">
           <button className="nav-link btn" onClick={() => signOut()}>
             <i className="fas fa-fw fa-sign-out-alt" />

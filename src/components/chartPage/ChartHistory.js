@@ -5,11 +5,7 @@ import "moment/locale/sr";
 
 import useSensorState from "../../hooks/useSensorState";
 import useSensorData from "../../hooks/useSensorData";
-import {
-  getCurrentDateUnixTime,
-  getDateUnixTime,
-  getDateFromUnixTime,
-} from "../../util";
+import { getCurrentDateUnixTime, getDateUnixTime } from "../../util";
 
 import Spinner from "../common/Spinner";
 import CustomDayPickerInput from "../common/CustomDayPickerInput";
@@ -17,17 +13,30 @@ import ChartHistoryCharts from "./ChartHistoryCharts";
 import ChartHistoryStatistics from "./ChartHistoryStatistics";
 
 const ChartHistory = () => {
-  const [selectedDay, setSelectedDay] = useState(
+  const [dayFrom, setDayFrom] = useState(new Date(getCurrentDateUnixTime()));
+  const [dayTo, setDayTo] = useState(new Date(getCurrentDateUnixTime()));
+  const [sensor, sensorLoading] = useSensorState();
+  const [data, dataLoading, setDateRange] = useSensorData(
     new Date(getCurrentDateUnixTime())
   );
-  const [sensor, sensorLoading] = useSensorState();
-  const [data, dataLoading, setDay] = useSensorData(
-    getDateFromUnixTime(selectedDay)
-  );
+  const [changed, setChanged] = useState(false);
 
-  const handleDayChange = (day) => {
-    setSelectedDay(new Date(getDateUnixTime(day)));
-    setDay(getDateFromUnixTime(getDateUnixTime(day)));
+  const handleDayFromChange = (day) => {
+    setDayFrom(new Date(getDateUnixTime(day)));
+    setChanged(true);
+  };
+
+  const handleDayToChange = (day) => {
+    setDayTo(new Date(getDateUnixTime(day)));
+    setChanged(true);
+  };
+
+  const confirmRangeSelect = () => {
+    setDateRange({
+      to: dayTo,
+      from: dayFrom,
+    });
+    setChanged(false);
   };
 
   return (
@@ -40,26 +49,58 @@ const ChartHistory = () => {
       ) : (
         <Fragment>
           <div className="col-12">
+            <span className="font-weight-bold mr-2">Od:</span>
             <CustomDayPickerInput
-              value={selectedDay}
-              onChange={handleDayChange}
+              value={dayFrom}
+              onChange={handleDayFromChange}
               dayPickerProps={{
                 localeUtils: MomentLocateUtils,
                 locale: "sr",
-                selectedDays: selectedDay,
+                selectedDays: dayFrom,
                 disabledDays: [
                   {
                     before: new Date(sensor.firstDayTimestamp),
+                    after: dayTo,
+                  },
+                ],
+              }}
+            />
+            <span className="font-weight-bold mx-2">Do:</span>
+            <CustomDayPickerInput
+              value={dayTo}
+              onChange={handleDayToChange}
+              dayPickerProps={{
+                localeUtils: MomentLocateUtils,
+                locale: "sr",
+                selectedDays: dayTo,
+                disabledDays: [
+                  {
+                    before: dayFrom,
                     after: new Date(),
                   },
                 ],
               }}
             />
+            {changed && (
+              <div
+                className="btn btn-primary mx-2"
+                onClick={confirmRangeSelect}
+              >
+                Potvrdi
+              </div>
+            )}
           </div>
           {!dataLoading && (
             <div className="col-12">
-              <ChartHistoryStatistics {...data} />
-              <ChartHistoryCharts {...data} />
+              {data.length === 1 && <ChartHistoryStatistics {...data[0]} />}
+              {data.length > 0 && (
+                <ChartHistoryCharts data={data.map((x) => x.data).flat(1)} />
+              )}
+              {data.length === 0 && (
+                <h3 className="my-3 text-center">
+                  Nema podataka za izabran interval
+                </h3>
+              )}
             </div>
           )}
         </Fragment>

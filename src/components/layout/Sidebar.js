@@ -20,13 +20,13 @@ const Sidebar = () => {
       <SidebarLink
         to={ROUTE.REGISTER}
         text="Registruj se"
-        iconClassName="fas fa-fw fa-sign-in-alt"
+        iconClassName="fas fa-user-plus"
         active={path === ROUTE.REGISTER}
       />
       <SidebarLink
         to={ROUTE.LOGIN}
         text="Prijavi se"
-        iconClassName="fas fa-user-plus"
+        iconClassName="fas fa-fw fa-sign-in-alt"
         active={path === ROUTE.LOGIN}
       />
     </Fragment>
