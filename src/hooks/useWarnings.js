@@ -8,11 +8,13 @@ const useWarnings = () => {
 
   const [state, setState] = useState({ data: null, loading: true });
 
-  useEffect(() => {
-    db.doc(`sensor/mtiv09e1/data/warnings`).onSnapshot((doc) => {
-      setState({ data: doc.data(), loading: false });
-    });
-  }, [db]);
+  useEffect(
+    () =>
+      db.doc(`sensor/mtiv09e1/data/warnings`).onSnapshot((doc) => {
+        setState({ data: doc.data(), loading: false });
+      }),
+    [db]
+  );
 
   return [state.data, state.loading];
 };

@@ -11,12 +11,7 @@ const ChartHistoryCharts = ({ data }) => {
         <div className="card shadow animated--grow-in">
           <div className="card-body">
             {!!data ? (
-              <TemperatureChart
-                data={data}
-                height="45vh"
-                syncId="chartHistory"
-                zoomable={true}
-              />
+              <TemperatureChart data={data} height="45vh" zoomable={true} />
             ) : (
               <h3 className="my-3 text-center">
                 Nema podataka o temperaturi za izabran dan
@@ -29,12 +24,7 @@ const ChartHistoryCharts = ({ data }) => {
         <div className="card shadow animated--grow-in">
           <div className="card-body">
             {!!data ? (
-              <HumidityChart
-                data={data}
-                height="45vh"
-                syncId="chartHistory"
-                zoomable={true}
-              />
+              <HumidityChart data={data} height="45vh" zoomable={true} />
             ) : (
               <h3 className="my-3 text-center">
                 Nema podataka o vlažnosti za izabran dan
