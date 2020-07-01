@@ -67,7 +67,7 @@ const WarningsSubscription = () => {
         <Fragment>
           {isVerified ? (
             <div className="row">
-              <div className="col-12 col-lg-4">
+              <div className="col-12 col-xl-3">
                 <div className="card shadow border-left-primary">
                   <div className="card-body">
                     Na ovoj stranici se možete prijaviti na upozorenja. Ako ste
@@ -77,27 +77,27 @@ const WarningsSubscription = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-12 col-lg-5 mt-3 mt-lg-0">
-                <div className="card shadow border-left-info">
-                  <div className="card-body text-center">
-                    <h4 className="text-gray-700">
-                      {warnings.lastSendTime === -1
-                        ? "Nikada"
-                        : `Poslednje upozorenje poslato ${moment(
-                            warnings.lastSendTime
-                          ).fromNow()}.`}
-                    </h4>
-                    {warnings.lastSendTime && (
+              {warnings.lastSendTime && warnings.lastSendTime !== -1 && (
+                <div className="col-12 col-xl-5 mt-xl-0 mt-3">
+                  <div className="card shadow border-left-info">
+                    <div className="card-body text-center">
                       <h4 className="text-gray-700">
-                        {moment(warnings.lastSendTime).format(
-                          "Do MMM YYYY. H:mm:SS"
-                        )}
+                        Poslednje upozorenje poslato{" "}
+                        {moment(warnings.lastSendTime).fromNow()}.
                       </h4>
-                    )}
+                      {warnings.lastSendTime &&
+                        warnings.lastSendTime !== -1 && (
+                          <h4 className="text-gray-700">
+                            {moment(warnings.lastSendTime).format(
+                              "Do MMM YYYY. H:mm:SS"
+                            )}
+                          </h4>
+                        )}
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="col-12 col-lg-3 mt-3 mt-lg-0">
+              )}
+              <div className="col-12 col-xl-4 mt-xl-0 mt-3">
                 <div className="card shadow">
                   <div
                     className={classnames("card-body text-center", {
