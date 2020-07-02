@@ -3,10 +3,7 @@ import React, { Component } from "react";
 class CustomDayPickerInputComponent extends Component {
   render() {
     return (
-      <button
-        {...this.props}
-        className="btn btn-primary btn-icon-split animated--grow-in"
-      >
+      <button {...this.props} className="btn btn-primary btn-icon-split">
         <span className="icon text-white-50">
           <i className="far fa-calendar-alt"></i>
         </span>
