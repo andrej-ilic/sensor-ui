@@ -1,25 +1,43 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 
 const DashboardImage = () => {
-  const [imageUrl, setImageUrl] = useState("http://147.91.209.67/slika.jpg");
+  const [state, setState] = useState({ image: null, loading: true });
 
   useEffect(() => {
+    const image = new Image();
+    image.onload = () => {
+      setState({ image, loading: false });
+    };
+    image.src = `http://147.91.209.67/slika.jpg`;
+
     const timeout = setInterval(() => {
-      setImageUrl(`http://147.91.209.67/slika.jpg?${Date.now()}`);
+      const newImage = new Image();
+      newImage.onload = () => {
+        setState({ image: newImage, loading: false });
+      };
+      newImage.src = `http://147.91.209.67/slika.jpg?${Date.now()}`;
     }, 60000);
     return () => clearInterval(timeout);
   }, []);
 
   return (
-    <div className="row mb-3">
-      <div className="col-12 col-xl-5">
-        <div className="card shadow animated--grow-in">
-          <div className="card-body text-center">
-            <img className="img-fluid" src={imageUrl} alt="IP Camera" />
+    <Fragment>
+      {!state.loading && (
+        <div className="row mb-3">
+          <div className="col-12 col-xl-5">
+            <div className="card shadow animated--grow-in">
+              <div className="card-body text-center">
+                <img
+                  className="img-fluid"
+                  src={state.image.src}
+                  alt="IP Camera"
+                />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      )}
+    </Fragment>
   );
 };
 
