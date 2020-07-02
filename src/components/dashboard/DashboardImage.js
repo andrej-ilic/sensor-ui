@@ -13,7 +13,7 @@ const DashboardImage = () => {
   return (
     <div className="row mb-3">
       <div className="col-12 col-xl-5">
-        <div className="card shadow">
+        <div className="card shadow animated--grow-in">
           <div className="card-body text-center">
             <img className="img-fluid" src={imageUrl} alt="IP Camera" />
           </div>

@@ -68,7 +68,7 @@ const WarningsSubscription = () => {
           {isVerified ? (
             <div className="row">
               <div className="col-12 col-xl-3">
-                <div className="card shadow border-left-primary">
+                <div className="card shadow border-left-primary animated--grow-in">
                   <div className="card-body">
                     Na ovoj stranici se možete prijaviti na upozorenja. Ako ste
                     prijavljeni, kada temperatura ili vlažnost senzora pređe
@@ -79,7 +79,7 @@ const WarningsSubscription = () => {
               </div>
               {warnings.lastSendTime && warnings.lastSendTime !== -1 && (
                 <div className="col-12 col-xl-5 mt-xl-0 mt-3">
-                  <div className="card shadow border-left-info">
+                  <div className="card shadow border-left-info animated--grow-in">
                     <div className="card-body text-center">
                       <h4 className="text-gray-700">
                         Poslednje upozorenje poslato{" "}
@@ -98,13 +98,13 @@ const WarningsSubscription = () => {
                 </div>
               )}
               <div className="col-12 col-xl-4 mt-xl-0 mt-3">
-                <div className="card shadow">
-                  <div
-                    className={classnames("card-body text-center", {
-                      "border-left-success": !isSubscribed,
-                      "border-left-danger": isSubscribed,
-                    })}
-                  >
+                <div
+                  className={classnames("card shadow animated--grow-in", {
+                    "border-left-success": !isSubscribed,
+                    "border-left-danger": isSubscribed,
+                  })}
+                >
+                  <div className="card-body text-center">
                     <h4 className="text-gray-700">
                       {isSubscribed
                         ? "Prijavljeni ste na upozorenja"

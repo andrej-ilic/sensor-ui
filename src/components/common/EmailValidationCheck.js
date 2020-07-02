@@ -26,7 +26,7 @@ const EmailValidationCheck = () => {
   return (
     <Fragment>
       {!isVerified && !state.error && (
-        <div className="alert alert-warning">
+        <div className="alert alert-warning animated--grow-in">
           {!state.sent && (
             <Fragment>
               Vaša email adresa nije potvrđena. Kliknite na link u
@@ -50,7 +50,7 @@ const EmailValidationCheck = () => {
         </div>
       )}
       {!isVerified && state.error && (
-        <div className="alert alert-danger">
+        <div className="alert alert-danger animated--grow-in">
           Došlo je do greške pri slanju verifikacionog email-a. Pokušajte ponovo
           kasnije.
         </div>
