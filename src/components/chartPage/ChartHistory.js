@@ -42,7 +42,7 @@ const ChartHistory = () => {
   return (
     <div className="row mb-3">
       <div className="col-12">
-        <h3 className="text-gray-700">Istorija grafova</h3>
+        <h3 className="text-gray-700">Istorija grafika</h3>
       </div>
       {sensorLoading ? (
         <Spinner />
