@@ -23,7 +23,7 @@ const HumidityChart = ({ data, height, syncId, zoomable }) => {
         height={height}
         unit="%"
         tickFormatter={(ts) => moment(ts).format("HH:mm")}
-        labelFormatter={(ts) => moment(ts).format("HH:mm Do")}
+        labelFormatter={(ts) => moment(ts).format("HH:mm Do MMM")}
         syncId={syncId}
         padding={0.1}
       />
@@ -41,7 +41,7 @@ const HumidityChart = ({ data, height, syncId, zoomable }) => {
       height={height}
       unit="%"
       tickFormatter={(ts) => moment(ts).format("HH:mm")}
-      labelFormatter={(ts) => moment(ts).format("HH:mm Do")}
+      labelFormatter={(ts) => moment(ts).format("HH:mm Do MMM")}
       syncId={syncId}
       padding={0.1}
     />

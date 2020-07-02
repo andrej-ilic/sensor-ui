@@ -23,7 +23,7 @@ const TemperatureChart = ({ data, height, syncId, zoomable }) => {
         height={height}
         unit="&deg;C"
         tickFormatter={(ts) => moment(ts).format("HH:mm")}
-        labelFormatter={(ts) => moment(ts).format("HH:mm Do")}
+        labelFormatter={(ts) => moment(ts).format("HH:mm Do MMM")}
         syncId={syncId}
         padding={0.2}
       />
@@ -41,7 +41,7 @@ const TemperatureChart = ({ data, height, syncId, zoomable }) => {
       height={height}
       unit="&deg;C"
       tickFormatter={(ts) => moment(ts).format("HH:mm")}
-      labelFormatter={(ts) => moment(ts).format("HH:mm Do")}
+      labelFormatter={(ts) => moment(ts).format("HH:mm Do MMM")}
       syncId={syncId}
       padding={0.2}
     />
