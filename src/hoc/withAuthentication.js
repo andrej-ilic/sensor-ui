@@ -6,8 +6,7 @@ import { UserContext } from "../context/user";
 import FullscreenSpinner from "../components/layout/FullscreenSpinner";
 
 const withAuthentication = (Component) => (props) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [user, setUser] = useState(null);
+  const [state, setState] = useState({ user: null, loading: true });
 
   const firebase = useContext(FirebaseContext);
   /** @type import('firebase/app').auth.Auth */
@@ -16,15 +15,14 @@ const withAuthentication = (Component) => (props) => {
   useEffect(
     () =>
       auth.onAuthStateChanged((authUser) => {
-        setUser(authUser);
-        setIsLoading(false);
+        setState({ user: authUser, loading: false });
       }),
     [auth]
   );
 
   return (
-    <UserContext.Provider value={user}>
-      {isLoading ? <FullscreenSpinner /> : <Component {...props} />}
+    <UserContext.Provider value={state.user}>
+      {state.loading ? <FullscreenSpinner /> : <Component {...props} />}
     </UserContext.Provider>
   );
 };
