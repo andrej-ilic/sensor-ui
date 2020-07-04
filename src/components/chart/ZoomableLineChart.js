@@ -171,7 +171,7 @@ const ZoomableLineChart = ({
               stroke={color}
               strokeWidth={2}
               dot={false}
-              animationDuration={500}
+              isAnimationActive={false}
             />
             {chartState.leftArea && chartState.rightArea && (
               <ReferenceArea
