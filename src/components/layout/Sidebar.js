@@ -63,7 +63,7 @@ const Sidebar = () => {
       />
       <SidebarLink
         to={ROUTE.CHART_HISTORY}
-        text="Istorija grafika"
+        text="Istorija"
         iconClassName="fas fa-fw fa-chart-line"
         active={path === ROUTE.CHART_HISTORY}
       />

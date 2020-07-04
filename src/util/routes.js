@@ -1,6 +1,6 @@
 const ROUTE = {
   DASHBOARD: "/",
-  CHART_HISTORY: "/grafici",
+  CHART_HISTORY: "/istorija",
   LOGIN: "/prijava",
   REGISTER: "/registracija",
   WARNINGS: "/upozoravanje",
