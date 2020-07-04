@@ -55,7 +55,7 @@ const CustomLineChart = ({
   return (
     <div style={{ width: "100%", height }}>
       <ResponsiveContainer>
-        <LineChart data={data} syncId={syncId}>
+        <LineChart data={data} syncId={syncId} style={{ userSelect: "none" }}>
           <XAxis
             dataKey={xKey}
             name={xName}
