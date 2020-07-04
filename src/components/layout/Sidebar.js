@@ -1,6 +1,7 @@
 import React, { useContext, Fragment } from "react";
 import { Link, useLocation } from "react-router-dom";
 import classnames from "classnames";
+import UNICLogo from "./unic.png";
 
 import { LayoutContext } from "../../context/layout";
 import ROUTE from "../../util/routes";
@@ -52,7 +53,15 @@ const Sidebar = () => {
         to={ROUTE.DASHBOARD}
         className="sidebar-brand d-flex align-items-center justify-content-center"
       >
-        Praćenje senzora
+        <div className="sidebar-brand-icon">
+          <img
+            className="img-fluid"
+            src={UNICLogo}
+            alt="Logo"
+            style={{ maxWidth: "3.75rem" }}
+          />
+        </div>
+        <div className="sidebar-brand-text">UNIC monitoring</div>
       </Link>
       <hr className="sidebar-divider mb-0" />
       <SidebarLink
