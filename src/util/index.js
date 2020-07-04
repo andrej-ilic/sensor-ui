@@ -1,4 +1,5 @@
 import moment from "moment";
+import FileSaver from "file-saver";
 
 const getCurrentDate = () => moment().format("YYYYMMDD");
 
@@ -26,6 +27,15 @@ const getDateUnixTime = (date) =>
 const getUnixTimeInLocalTimezone = (d) =>
   d.getTime() + d.getTimezoneOffset() * -60000;
 
+const savePointsToCSV = (points, fileName) => {
+  let csvContent = "Vreme,Temperatura,Vlaznost\n";
+  points.forEach(
+    (point) => (csvContent += `${point.ts},${point.t},${point.h}\n`)
+  );
+  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8" });
+  FileSaver.saveAs(blob, fileName);
+};
+
 export {
   getCurrentDate,
   getPreviousDate,
@@ -33,4 +43,5 @@ export {
   getDateFromUnixTime,
   getCurrentDateUnixTime,
   getDateUnixTime,
+  savePointsToCSV,
 };

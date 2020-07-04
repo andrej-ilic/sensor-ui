@@ -1,5 +1,7 @@
 import { useContext, useState, useEffect } from "react";
+
 import { FirebaseContext } from "../context/firebase";
+import { getDateFromUnixTime, savePointsToCSV } from "../util/index";
 
 const useSensorData = (initialDay) => {
   const firebase = useContext(FirebaseContext);
@@ -24,7 +26,16 @@ const useSensorData = (initialDay) => {
       });
   }, [db, dateRange]);
 
-  return [data.data, data.loading, setDateRange];
+  const downloadAsCSV = () => {
+    savePointsToCSV(
+      data.data.map((x) => x.data).flat(1),
+      `UNIC_monitoring_data_${getDateFromUnixTime(
+        dateRange.from
+      )}_${getDateFromUnixTime(dateRange.to)}.csv`
+    );
+  };
+
+  return [data.data, data.loading, setDateRange, downloadAsCSV];
 };
 
 export default useSensorData;

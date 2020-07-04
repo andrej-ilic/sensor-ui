@@ -22,7 +22,7 @@ const Dashboard = () => {
         </div>
         <div className="col-12 col-md-6">
           <button
-            className="btn btn-primary btn-sm btn-icon-split float-none float-md-right"
+            className="btn btn-primary btn-sm btn-icon-split float-none float-md-right animated--grow-in"
             onClick={downloadAsCSV}
           >
             <span className="icon text-white-50">
