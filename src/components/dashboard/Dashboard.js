@@ -10,13 +10,28 @@ import DashboardImage from "./DashboardImage";
 
 const Dashboard = () => {
   const [sensor, loading] = useSensorState();
-  const [getPoints, pointsLoading] = useRecentSensorData();
+  const [getPoints, pointsLoading, downloadAsCSV] = useRecentSensorData();
 
   const points = getPoints();
 
   return (
     <Fragment>
-      <h3 className="text-gray-700">Status senzora</h3>
+      <div className="row mb-3 mb-md-0">
+        <div className="col-12 col-md-6">
+          <h3 className="text-gray-700">Status senzora</h3>
+        </div>
+        <div className="col-12 col-md-6">
+          <button
+            className="btn btn-primary btn-sm btn-icon-split float-none float-md-right"
+            onClick={downloadAsCSV}
+          >
+            <span className="icon text-white-50">
+              <i className="fas fa-download"></i>
+            </span>
+            <span className="text">Preuzmi CSV</span>
+          </button>
+        </div>
+      </div>
       {loading || pointsLoading ? (
         <Spinner />
       ) : (

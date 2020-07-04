@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import FileSaver from "file-saver";
 
 import { FirebaseContext } from "../context/firebase";
 import { getCurrentDate, getPreviousDate, getNextDate } from "../util";
@@ -72,9 +73,19 @@ const useRecentSensorData = () => {
       )
       .sort((a, b) => a.ts - b.ts);
 
+  const downloadAsCSV = () => {
+    let csvContent = "timestamp,temperature,humidity\n";
+    getPoints().forEach(
+      (point) => (csvContent += `${point.ts},${point.t},${point.h}\n`)
+    );
+    const blob = new Blob([csvContent], { type: "text/csv" });
+    FileSaver.saveAs(blob, `UNIC_monitoring_data_${Date.now()}.csv`);
+  };
+
   return [
     getPoints,
     todayData.loading || yesterdayData.loading || tomorrowData.loading,
+    downloadAsCSV,
   ];
 };
 
