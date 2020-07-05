@@ -8,6 +8,8 @@ const Register = () => {
   const firebase = useContext(FirebaseContext);
   /** @type import('firebase/app').auth.Auth */
   const auth = firebase.auth;
+  /** @type import('firebase/app').firestore.Firestore */
+  const db = firebase.db;
 
   const [isLoading, setIsLoading] = useState(false);
   const [inputs, setInputs] = useState({
@@ -34,6 +36,9 @@ const Register = () => {
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((userCredential) => userCredential.user.sendEmailVerification())
+      .then(() =>
+        db.doc(`users/${email}`).set({ sendAlerts: false, lastAlertTime: -1 })
+      )
       .catch((err) => setError(err.code))
       .finally(() => setIsLoading(false));
   };
