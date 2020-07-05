@@ -30,7 +30,10 @@ const getUnixTimeInLocalTimezone = (d) =>
 const savePointsToCSV = (points, fileName) => {
   let csvContent = "Vreme,Temperatura,Vlaznost\n";
   points.forEach(
-    (point) => (csvContent += `${point.ts},${point.t},${point.h}\n`)
+    (point) =>
+      (csvContent += `${moment(point.ts).format("YYYY-MM-DD HH:mm:ss")},${
+        point.t
+      },${point.h}\n`)
   );
   const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8" });
   FileSaver.saveAs(blob, fileName);
