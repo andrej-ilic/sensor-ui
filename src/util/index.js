@@ -28,12 +28,13 @@ const getUnixTimeInLocalTimezone = (d) =>
   d.getTime() + d.getTimezoneOffset() * -60000;
 
 const savePointsToCSV = (points, fileName) => {
-  let csvContent = "Vreme,Temperatura,Vlaznost\n";
+  let csvContent =
+    "Vreme,Temperatura,Vlaznost,Prosecna temperatura (1h),Prosecna vlaznost (1h)\n";
   points.forEach(
     (point) =>
       (csvContent += `${moment(point.ts).format("YYYY-MM-DD HH:mm:ss")},${
-        point.t
-      },${point.h}\n`)
+        point.t || null
+      },${point.h || null},${point.at || null},${point.ah || null}\n`)
   );
   const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8" });
   FileSaver.saveAs(blob, fileName);
