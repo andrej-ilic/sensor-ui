@@ -9,6 +9,7 @@ const HumidityChart = ({ data, height, syncId, zoomable }) => {
   const humidityData = data.map((point) => ({
     time: point.ts,
     humidity: point.h,
+    averageHumidity: point.ah,
   }));
 
   if (zoomable) {
@@ -16,10 +17,13 @@ const HumidityChart = ({ data, height, syncId, zoomable }) => {
       <ZoomableLineChart
         data={humidityData}
         color="#36b9cc"
+        avgColor="#1cc88a"
         xName="Vreme"
         yName="Vlažnost"
+        avgYName="Prosečna vlažnost (1h)"
         xKey="time"
         yKey="humidity"
+        avgYKey="averageHumidity"
         height={height}
         unit="%"
         tickFormatter={(ts) => moment(ts).format("HH:mm")}
@@ -34,10 +38,13 @@ const HumidityChart = ({ data, height, syncId, zoomable }) => {
     <LineChart
       data={humidityData}
       color="#36b9cc"
+      avgColor="#1cc88a"
       xName="Vreme"
       yName="Vlažnost"
+      avgYName="Prosečna vlažnost (1h)"
       xKey="time"
       yKey="humidity"
+      avgYKey="averageHumidity"
       height={height}
       unit="%"
       tickFormatter={(ts) => moment(ts).format("HH:mm")}

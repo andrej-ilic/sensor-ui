@@ -10,15 +10,19 @@ import {
   ResponsiveContainer,
   Legend,
   ReferenceLine,
+  ReferenceArea,
 } from "recharts";
 
 const CustomLineChart = ({
   data,
   color,
+  avgColor,
   xName,
   yName,
+  avgYName,
   xKey,
   yKey,
+  avgYKey,
   height,
   unit,
   tickFormatter,
@@ -27,6 +31,9 @@ const CustomLineChart = ({
   average,
   averageColor,
   padding,
+  leftArea,
+  rightArea,
+  ...rest
 }) => {
   if (!data || !data.length) {
     return <h1 className="my-3 text-center">Nema podataka za prikaz</h1>;
@@ -55,7 +62,12 @@ const CustomLineChart = ({
   return (
     <div style={{ width: "100%", height }}>
       <ResponsiveContainer>
-        <LineChart data={data} syncId={syncId} style={{ userSelect: "none" }}>
+        <LineChart
+          data={data}
+          syncId={syncId}
+          style={{ userSelect: "none" }}
+          {...rest}
+        >
           <XAxis
             dataKey={xKey}
             name={xName}
@@ -73,7 +85,7 @@ const CustomLineChart = ({
           />
           <CartesianGrid strokeDasharray="3 3" />
           <Tooltip
-            formatter={(x) => x + unit}
+            formatter={(x) => parseFloat(x).toFixed(1) + unit}
             labelFormatter={labelFormatter}
           />
           <Legend />
@@ -89,6 +101,20 @@ const CustomLineChart = ({
             dot={false}
             isAnimationActive={false}
           />
+          {avgYName && avgYKey && avgColor && (
+            <Line
+              type="monotone"
+              dataKey={avgYKey}
+              name={avgYName}
+              stroke={avgColor}
+              strokeWidth={2}
+              dot={false}
+              isAnimationActive={false}
+            />
+          )}
+          {leftArea && rightArea && (
+            <ReferenceArea x1={leftArea} x2={rightArea} strokeOpacity={0.3} />
+          )}
         </LineChart>
       </ResponsiveContainer>
     </div>
@@ -104,10 +130,13 @@ CustomLineChart.defaultProps = {
 CustomLineChart.propTypes = {
   data: PropTypes.array.isRequired,
   color: PropTypes.string,
+  avgColor: PropTypes.string,
   xName: PropTypes.string,
   yName: PropTypes.string,
+  avgYName: PropTypes.string,
   xKey: PropTypes.string.isRequired,
   yKey: PropTypes.string.isRequired,
+  avgYKey: PropTypes.string,
   height: PropTypes.string,
   unit: PropTypes.string,
   tickFormatter: PropTypes.func,
@@ -116,6 +145,8 @@ CustomLineChart.propTypes = {
   average: PropTypes.number,
   averageColor: PropTypes.string,
   padding: PropTypes.number,
+  leftArea: PropTypes.number,
+  rightArea: PropTypes.number,
 };
 
 export default CustomLineChart;

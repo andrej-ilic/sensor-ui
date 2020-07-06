@@ -9,6 +9,7 @@ const TemperatureChart = ({ data, height, syncId, zoomable }) => {
   const temperatureData = data.map((point) => ({
     time: point.ts,
     temperature: point.t,
+    averageTemperature: point.at,
   }));
 
   if (zoomable) {
@@ -16,10 +17,13 @@ const TemperatureChart = ({ data, height, syncId, zoomable }) => {
       <ZoomableLineChart
         data={temperatureData}
         color="#e74a3b"
+        avgColor="#f6c23e"
         xName="Vreme"
         yName="Temperatura"
+        avgYName="Prosečna temperatura (1h)"
         xKey="time"
         yKey="temperature"
+        avgYKey="averageTemperature"
         height={height}
         unit="&deg;C"
         tickFormatter={(ts) => moment(ts).format("HH:mm")}
@@ -34,10 +38,13 @@ const TemperatureChart = ({ data, height, syncId, zoomable }) => {
     <LineChart
       data={temperatureData}
       color="#e74a3b"
+      avgColor="#f6c23e"
       xName="Vreme"
       yName="Temperatura"
+      avgYName="Prosečna temperatura (1h)"
       xKey="time"
       yKey="temperature"
+      avgYKey="averageTemperature"
       height={height}
       unit="&deg;C"
       tickFormatter={(ts) => moment(ts).format("HH:mm")}
