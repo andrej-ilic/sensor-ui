@@ -76,8 +76,8 @@ const ZoomableLineChart = ({ data, ...rest }) => {
     <div>
       <LineChart
         data={chartState.data}
-        onMouseDown={(e) => setLeftArea(e.activeLabel)}
-        onMouseMove={(e) => setRightArea(e.activeLabel)}
+        onMouseDown={(e) => e && setLeftArea(e.activeLabel)}
+        onMouseMove={(e) => e && setRightArea(e.activeLabel)}
         onMouseUp={zoom}
         leftArea={chartState.leftArea}
         rightArea={chartState.rightArea}

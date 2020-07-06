@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import {
   LineChart,
@@ -35,6 +35,11 @@ const CustomLineChart = ({
   rightArea,
   ...rest
 }) => {
+  const [showLineState, setShowLineState] = useState({
+    [yKey]: true,
+    [avgYKey]: true,
+  });
+
   if (!data || !data.length) {
     return <h1 className="my-3 text-center">Nema podataka za prikaz</h1>;
   }
@@ -58,6 +63,13 @@ const CustomLineChart = ({
   for (let i = botValue; i <= topValue; i += 0.1) {
     yTicks.push(i.toFixed(1));
   }
+
+  const handleLegendClick = (o) => {
+    setShowLineState((oldState) => ({
+      ...oldState,
+      [o.dataKey]: !oldState[o.dataKey],
+    }));
+  };
 
   return (
     <div style={{ width: "100%", height }}>
@@ -88,7 +100,10 @@ const CustomLineChart = ({
             formatter={(x) => parseFloat(x).toFixed(1) + unit}
             labelFormatter={labelFormatter}
           />
-          <Legend />
+          <Legend
+            onClick={handleLegendClick}
+            wrapperStyle={{ cursor: "pointer" }}
+          />
           {average !== undefined && (
             <ReferenceLine y={average} stroke={averageColor} />
           )}
@@ -100,6 +115,7 @@ const CustomLineChart = ({
             strokeWidth={2}
             dot={false}
             isAnimationActive={false}
+            opacity={showLineState[yKey] ? 1 : 0.1}
           />
           {avgYName && avgYKey && avgColor && (
             <Line
@@ -110,6 +126,7 @@ const CustomLineChart = ({
               strokeWidth={2}
               dot={false}
               isAnimationActive={false}
+              opacity={showLineState[avgYKey] ? 1 : 0.1}
             />
           )}
           {leftArea && rightArea && (
