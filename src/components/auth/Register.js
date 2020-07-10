@@ -63,7 +63,7 @@ const Register = () => {
     <div className="row align-items-center justify-content-center">
       <div className="col-sm-12 col-md-10 col-lg-7 col-xl-5">
         <h3 className="text-gray-700">Registruj se</h3>
-        <div className="card">
+        <div className="card shadow animated--grow-in">
           <div className="card-body">
             <form className="needs-validation" onSubmit={handleSubmit}>
               <div className="form-group">
