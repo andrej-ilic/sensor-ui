@@ -53,7 +53,7 @@ const Register = () => {
     );
   } else if (error === "auth/invalid-email") {
     errorMessage = (
-      <div className="text-danger mb-0 mt-3">Ne važeća email adresa</div>
+      <div className="text-danger mb-0 mt-3">Nevažeća email adresa</div>
     );
   } else if (error === "auth/weak-password") {
     errorMessage = <div className="text-danger mb-0 mt-3">Slaba lozinka</div>;
@@ -74,6 +74,7 @@ const Register = () => {
                   className="form-control"
                   value={inputs.email}
                   onChange={handleInputChange}
+                  required={true}
                 />
               </div>
               <div className="form-group">
@@ -84,6 +85,7 @@ const Register = () => {
                   className="form-control"
                   value={inputs.password}
                   onChange={handleInputChange}
+                  required={true}
                 />
               </div>
               <LoadingButton

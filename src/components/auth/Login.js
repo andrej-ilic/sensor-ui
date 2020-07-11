@@ -89,7 +89,7 @@ const Login = () => {
     );
   } else if (state.error === "auth/invalid-email") {
     errorMessage = (
-      <div className="text-danger mb-0 mt-3">Ne važeća email adresa</div>
+      <div className="text-danger mb-0 mt-3">Nevažeća email adresa</div>
     );
   } else if (state.error === "auth/wrong-password") {
     errorMessage = (
@@ -111,7 +111,7 @@ const Login = () => {
     );
   } else if (state.resetPasswordError === "auth/invalid-email") {
     resetPasswordErrorMessage = (
-      <div className="text-danger mt-3">Ne važeća email adresa</div>
+      <div className="text-danger mt-3">Nevažeća email adresa</div>
     );
   } else if (state.resetPasswordError) {
     resetPasswordErrorMessage = (
@@ -134,6 +134,7 @@ const Login = () => {
                   className="form-control"
                   value={state.email}
                   onChange={handleInputChange}
+                  required={true}
                 />
               </div>
               <div className="form-group">
@@ -144,6 +145,7 @@ const Login = () => {
                   className="form-control"
                   value={state.password}
                   onChange={handleInputChange}
+                  required={true}
                 />
               </div>
               <LoadingButton
@@ -175,6 +177,7 @@ const Login = () => {
                         className="form-control"
                         value={state.resetPasswordEmail}
                         onChange={handleInputChange}
+                        required={true}
                       />
                     </div>
                     <LoadingButton
