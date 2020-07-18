@@ -14,6 +14,8 @@ const WarningsSubscription = () => {
   const firebase = useContext(FirebaseContext);
   /** @type import('firebase/app').firestore.Firestore */
   const db = firebase.db;
+  /** @type import('firebase/app').auth.Auth */
+  const auth = firebase.auth;
 
   const { user, isVerified } = useUser();
   const [firestoreUser, loading] = useFirestoreUser(user.email);
@@ -25,6 +27,10 @@ const WarningsSubscription = () => {
     loading: false,
     subLoading: false,
   });
+
+  useEffect(() => {
+    auth.currentUser && auth.currentUser.getIdToken(true);
+  }, []);
 
   useEffect(() => {
     setState((oldState) => ({
