@@ -10,6 +10,8 @@ const Register = () => {
   const auth = firebase.auth;
   /** @type import('firebase/app').firestore.Firestore */
   const db = firebase.db;
+  /** @type import('firebase/app') */
+  const app = firebase.app;
 
   const [isLoading, setIsLoading] = useState(false);
   const [inputs, setInputs] = useState({
@@ -36,6 +38,7 @@ const Register = () => {
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((userCredential) => userCredential.user.sendEmailVerification())
+      .then(() => app.analytics().logEvent("sign_up"))
       .then(() =>
         db.doc(`users/${email}`).set({ sendAlerts: false, lastAlertTime: -1 })
       )

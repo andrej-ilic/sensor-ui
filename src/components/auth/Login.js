@@ -9,6 +9,8 @@ const Login = () => {
   const firebase = useContext(FirebaseContext);
   /** @type import('firebase/app').auth.Auth */
   const auth = firebase.auth;
+  /** @type import('firebase/app') */
+  const app = firebase.app;
 
   const [state, setState] = useState({
     loading: false,
@@ -40,6 +42,7 @@ const Login = () => {
 
     auth
       .signInWithEmailAndPassword(email, password)
+      .then(() => app.analytics().logEvent("login"))
       .catch((err) =>
         setState((oldState) => ({ ...oldState, error: err.code }))
       )
