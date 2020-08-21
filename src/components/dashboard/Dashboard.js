@@ -6,7 +6,7 @@ import useRecentSensorData from "../../hooks/useRecentSensorData";
 import Spinner from "../common/Spinner";
 import SensorState from "./SensorState";
 import DashboardCharts from "./DashboardCharts";
-import DashboardImage from "./DashboardImage";
+// import DashboardImage from "./DashboardImage";
 
 const Dashboard = () => {
   const [sensor, loading] = useSensorState();
@@ -43,7 +43,7 @@ const Dashboard = () => {
             averageHumidity={sensor.averageHumidity}
           />
           <DashboardCharts points={points} />
-          <DashboardImage />
+          {/* <DashboardImage /> */}
         </Fragment>
       )}
     </Fragment>
