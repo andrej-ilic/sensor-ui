@@ -30,7 +30,7 @@ const WarningsSubscription = () => {
 
   useEffect(() => {
     auth.currentUser && auth.currentUser.getIdToken(true);
-  }, []);
+  }, [auth.currentUser]);
 
   useEffect(() => {
     setState((oldState) => ({
