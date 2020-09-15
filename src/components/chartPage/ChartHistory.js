@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+import isMobile from "is-mobile";
 import "react-day-picker/lib/style.css";
 import MomentLocateUtils from "react-day-picker/moment";
 import "moment/locale/sr";
@@ -79,7 +80,9 @@ const ChartHistory = () => {
                   ],
                 }}
               />
-              <span className="font-weight-bold mx-2">Do:</span>
+            </div>
+            <div className="col-12 mt-2">
+              <span className="font-weight-bold mr-2">Do:</span>
               <CustomDayPickerInput
                 value={dayTo}
                 onChange={handleDayToChange}
@@ -106,7 +109,9 @@ const ChartHistory = () => {
             </div>
             {!dataLoading && (
               <div className="col-12">
-                {data.length === 1 && <ChartHistoryStatistics {...data[0]} />}
+                {data.length === 1 && !isMobile() && (
+                  <ChartHistoryStatistics {...data[0]} />
+                )}
                 {data.length > 0 && (
                   <ChartHistoryCharts data={data.map((x) => x.data).flat(1)} />
                 )}
