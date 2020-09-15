@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import isMobile from "is-mobile";
 
 import Sidebar from "./components/layout/Sidebar";
 import Content from "./components/layout/Content";
@@ -8,7 +9,7 @@ import { LayoutContext } from "./context/layout";
 
 const App = () => {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
-  const [isSidebarToggled, setIsSidebarToggled] = useState(false);
+  const [isSidebarToggled, setIsSidebarToggled] = useState(isMobile());
 
   const layoutContextValue = {
     isSidebarCollapsed,
