@@ -1,6 +1,7 @@
 import React, { useContext, Fragment } from "react";
 import { Link, useLocation } from "react-router-dom";
 import classnames from "classnames";
+import isMobile from "is-mobile";
 import UNICLogo from "./unic.png";
 
 import { LayoutContext } from "../../context/layout";
@@ -15,6 +16,12 @@ const Sidebar = () => {
     LayoutContext
   );
   const { isAuthenticated } = useUser();
+
+  const handleLogoClick = () => {
+    if (isMobile()) {
+      toggleSidebar();
+    }
+  };
 
   const unauthenticatedContent = (
     <Fragment>
@@ -52,6 +59,7 @@ const Sidebar = () => {
       <Link
         to={ROUTE.DASHBOARD}
         className="sidebar-brand d-flex align-items-center justify-content-center"
+        onClick={handleLogoClick}
       >
         <div className="sidebar-brand-icon">
           <img
