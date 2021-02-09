@@ -1,17 +1,17 @@
-import React from "react";
 import { Route, Switch } from "react-router-dom";
+import React from "react";
 
-import ROUTE from "../../util/routes";
-
-import Topbar from "./Topbar";
-import Dashboard from "../dashboard/Dashboard";
-import Login from "../auth/Login";
-import PublicOnlyRoute from "../auth/PublicOnlyRoute";
-import ProtectedRoute from "../auth/ProtectedRoute";
 import ChartHistory from "../chartPage/ChartHistory";
-import Register from "../auth/Register";
-import WarningsPage from "../warnings/WarningsPage";
+import Dashboard from "../dashboard/Dashboard";
+import IPCameraPage from "../ipCameraPage/IPCameraPage";
+import Login from "../auth/Login";
 import NotFound from "./NotFound";
+import ProtectedRoute from "../auth/ProtectedRoute";
+import PublicOnlyRoute from "../auth/PublicOnlyRoute";
+import Register from "../auth/Register";
+import ROUTE from "../../util/routes";
+import Topbar from "./Topbar";
+import WarningsPage from "../warnings/WarningsPage";
 
 const Content = () => {
   return (
@@ -21,6 +21,7 @@ const Content = () => {
         <div className="container-fluid">
           <Switch>
             <Route exact path={ROUTE.DASHBOARD} component={Dashboard} />
+            <Route exact path={ROUTE.IP_CAMERA} component={IPCameraPage} />
             <Route exact path={ROUTE.CHART_HISTORY} component={ChartHistory} />
             <PublicOnlyRoute exact path={ROUTE.LOGIN} component={Login} />
             <PublicOnlyRoute exact path={ROUTE.REGISTER} component={Register} />

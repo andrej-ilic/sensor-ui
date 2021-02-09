@@ -79,6 +79,12 @@ const Sidebar = () => {
         active={path === ROUTE.DASHBOARD}
       />
       <SidebarLink
+        to={ROUTE.IP_CAMERA}
+        text="IP kamera"
+        iconClassName="fas fa-fw fa-video"
+        active={path === ROUTE.IP_CAMERA}
+      />
+      <SidebarLink
         to={ROUTE.CHART_HISTORY}
         text="Istorija"
         iconClassName="fas fa-fw fa-chart-line"

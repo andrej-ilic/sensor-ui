@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, Fragment } from "react";
 import { FirebaseContext } from "../../context/firebase";
 
-const DashboardImage = () => {
+const DashboardImage = ({ columnClasses }) => {
   const [state, setState] = useState({ image: null, loading: true });
   const firebase = useContext(FirebaseContext);
   /** @type import('firebase/app').storage.Storage */
@@ -34,11 +34,12 @@ const DashboardImage = () => {
     <Fragment>
       {!state.loading && (
         <div className="row mb-3">
-          <div className="col-12 col-xl-5">
+          <div className={columnClasses}>
             <div className="card shadow animated--grow-in">
               <div className="card-body text-center">
                 <img
-                  className="img-fluid"
+                  className="img-fluid clickable"
+                  onClick={() => window.open(state.image.src, "_blank")}
                   src={state.image.src}
                   alt="IP Camera"
                 />

@@ -43,7 +43,7 @@ const Dashboard = () => {
             averageHumidity={sensor.averageHumidity}
           />
           <DashboardCharts points={points} />
-          <DashboardImage />
+          <DashboardImage columnClasses="col-12 col-xl-7" />
         </Fragment>
       )}
     </Fragment>
